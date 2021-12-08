@@ -8,7 +8,7 @@ class DatabaseService extends GetxService {
   late final MySqlConnection connection;
 
   final _settings = ConnectionSettings(
-    host: '192.168.1.69', //ip local
+    host: '192.168.0.1', //ip local
     port: 3306,
     user: 'root',
     // password: '',

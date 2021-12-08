@@ -1,8 +1,9 @@
 import 'dart:math';
-
 import 'package:chatbot/models/answer.dart';
 import 'package:chatbot/models/question.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'chatbot_view.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class Home extends StatelessWidget {
         ),
         body: const SafeArea(
           child: SingleChildScrollView(
-            child: ChatBot(),
+            child: ChatbotView(),
           ),
         ),
       ),
@@ -91,8 +92,7 @@ class _ChatBotState extends State<ChatBot> {
               decoration: const InputDecoration(
                 labelText: 'Pregunta',
               ),
-              validator: (value) =>
-                  value!.length > 3 ? null : 'Pregunta no válida',
+              validator: (value) => value!.length > 3 ? null : 'Pregunta no válida',
               onSaved: (value) => question.text = value ?? '',
               onChanged: (value) {
                 if (add || answer.text != '' || exist) {
@@ -113,25 +113,21 @@ class _ChatBotState extends State<ChatBot> {
               decoration: const InputDecoration(
                 labelText: 'Respuesta',
               ),
-              validator: (value) => add
-                  ? (value!.length > 3 ? null : 'Respuesta no válida')
-                  : null,
+              validator: (value) => add ? (value!.length > 3 ? null : 'Respuesta no válida') : null,
               onSaved: (value) => answer.text = value ?? '',
               onChanged: (value) {
                 if (!add) {
                   setState(() {
                     add = true;
                   });
-                } else if(value == '') {
+                } else if (value == '') {
                   setState(() {
                     add = false;
                   });
                 }
               },
             ),
-            Text(exist
-                ? 'Aún no existe una respuesta a tu pregunta, añade una respuesta'
-                : ''),
+            Text(exist ? 'Aún no existe una respuesta a tu pregunta, añade una respuesta' : ''),
             const Divider(
               height: 32.0,
             ),

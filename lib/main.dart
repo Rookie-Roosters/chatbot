@@ -1,3 +1,4 @@
+import 'package:chatbot/pages/chatbot_controller.dart';
 import 'package:chatbot/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,4 +11,5 @@ void main() async {
 
 Future<void> initServices() async {
   await Get.putAsync(() => DatabaseService().init());
+  Get.put(ChatbotController());
 }
